@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <h2>Scientific Calculator</h2>
+
+    <form method="POST" action="/calculate">
+        <input type="text" id="display" name="expression"
+               value="{{ expression if expression else '' }}" readonly>
+        
+        <div class="buttons">
+
+            <!-- Row 1 -->
+            <button type="button" onclick="append('7')">7</button>
+            <button type="button" onclick="append('8')">8</button>
+            <button type="button" onclick="append('9')">9</button>
+            <button type="button" onclick="append('/')">/</button>
+
+            <!-- Row 2 -->
+            <button type="button" onclick="append('4')">4</button>
+            <button type="button" onclick="append('5')">5</button>
+            <button type="button" onclick="append('6')">6</button>
+            <button type="button" onclick="append('*')">*</button>
+
+            <!-- Row 3 -->
+            <button type="button" onclick="append('1')">1</button>
+            <button type="button" onclick="append('2')">2</button>
+            <button type="button" onclick="append('3')">3</button>
+            <button type="button" onclick="append('-')">-</button>
+
+            <!-- Row 4 -->
+            <button type="button" onclick="append('0')">0</button>
+            <button type="button" onclick="append('.')">.</button>
+            <button type="button" onclick="clearDisplay()">C</button>
+            <button type="button" onclick="append('+')">+</button>
+            <button type="button" onclick="backspace()">⌫</button>
+
+            <!-- Scientific row -->
+            <!-- <button type="button" onclick="append('log10(')">log</button>
+            <button type="button" onclick="append('log(')">ln</button>
+            <button type="button" onclick="append('sqrt(')">√</button>
+            <button type="button" onclick="append(')')">)</button> -->
+
+            <!-- Scientific row -->
+            <button type="button" onclick="append('log10(')">log</button>
+            <button type="button" onclick="append('log(')">ln</button>
+            <button type="button" onclick="append('sqrt(')">√</button>
+            <button type="button" onclick="append(')')">)</button>
+
+            <button type="button" onclick="append('sin(')">sin</button>
+            <button type="button" onclick="append('cos(')">cos</button>
+            <button type="button" onclick="append('tan(')">tan</button>
+            <button type="button" onclick="append('pi')">π</button>
+
+        </div>
+
+        <button type="submit" class="equal">=</button>
+        
+
+    </form>
+
+    <h3>Result: {{ result }}</h3>
+
+</div>
+
+<script>
+function append(value) {
+    document.getElementById("display").value += value;
+}
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+
+function backspace() {
+    let display = document.getElementById("display");
+    display.value = display.value.slice(0, -1);
+}
+</script>
+
+</body>
+</html>
